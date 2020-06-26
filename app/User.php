@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -14,6 +14,8 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array
+     *
+     * @todo Add 'enabled' and 'is_staff' fields
      */
     protected $fillable = [
         'name', 'email', 'password',
