@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -35,24 +36,32 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     *
-     * @todo Capture SQLState error 1062: Duplicate entry
      */
     public function store(Request $request)
     {
-        $request->validate(
+        $name = $request->get('name');
+        $email = $request->get('email');
+        $password = $request->get('password');
+
+        $validator = Validator::make(
             [
-                'name' => 'required',
-                'email' => 'required',
-                'password' => 'required',
+                'name' => $name,
+                'email' => $email,
+                'password' => $password,
+            ],
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:4'],
             ]
         );
+        $validator->validate();
 
         $user = new User(
             [
-                'name' => $request->get('name'),
-                'email' => $request->get('email'),
-                'password' => Hash::make($request->get('password')),
+                'name' => $name,
+                'email' => $email,
+                'password' => Hash::make($password),
             ]
         );
         $user->save();
@@ -92,21 +101,37 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     *
+     * @todo Add more password restrictions to make it secure
      */
     public function update(Request $request, $id)
     {
-        $request->validate(
-            [
-                'name' => 'required',
-                'email' => 'required',
-                'password' => 'required',
-            ]
+        $name = $request->get('name');
+        $email = $request->get('email');
+        $password = $request->get('password');
+
+        $name_validator = Validator::make(['name' => $name], ['name' => ['required', 'string', 'max:255']]);
+        $email_validator = Validator::make(
+            ['email' => $email],
+            ['email' => ['required', 'string', 'email', 'max:255', 'unique:users']]
+        );
+        $password_validator = Validator::make(
+            ['password' => $password],
+            ['password' => ['required', 'string', 'min:4']]
         );
 
+        $name_validator->validate();
+
         $user = User::find($id);
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
-        $user->password = Hash::make($request->get('password'));
+        $user->name = $name;
+        if ($user->email != $email) {
+            $email_validator->validate();
+            $user->email = $email;
+        }
+        if ($password) {
+            $password_validator->validate();
+            $user->password = Hash::make($password);
+        }
         $user->save();
 
         return redirect('/users')->with('success', 'User updated!');
