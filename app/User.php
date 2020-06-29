@@ -38,4 +38,43 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the roles
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
+    }
+
+    /**
+     * Check for at least one role of the array
+     *
+     * @param array $roles
+     * @return bool
+     */
+    public function hasAnyRoles(array $roles)
+    {
+        if ($this->roles()->whereIn('name', $roles)->first()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Check for the role
+     *
+     * @param array $role
+     * @return bool
+     */
+    public function hasRole(array $role)
+    {
+        if ($this->roles()->where('name', $role)->first()) {
+            return true;
+        }
+        return false;
+    }
+
 }
