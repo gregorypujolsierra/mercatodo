@@ -18,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @todo Add 'enabled' and 'is_staff' fields
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_enabled', 'is_staff',
+        'name', 'email', 'password',
     ];
 
     /**

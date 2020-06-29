@@ -47,16 +47,6 @@
                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label for="is_enabled">{{ __('Enabled') }}</label>
-                    <input id="is_enabled" type="checkbox" name="is_enabled"
-                    @if ($user->is_enabled) checked @endif>
-                </div>
-                <div class="form-group">
-                    <label for="is_staff">{{ __('Staff') }}</label>
-                    <input id="is_staff" type="checkbox" name="is_staff"
-                           @if ($user->is_staff) checked @endif>
-                </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
