@@ -13,6 +13,8 @@
                     <td>ID</td>
                     <td>Name</td>
                     <td>Email</td>
+                    <td>Enabled</td>
+                    <td>Staff</td>
                     <td colspan=2>Actions</td>
                 </tr>
                 </thead>
@@ -22,6 +24,8 @@
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        <td>{{$user->is_enabled}}</td>
+                        <td>{{$user->is_staff}}</td>
                         <td>
                             <a href="{{ route('users.edit',$user->id)}}" class="btn btn-primary">Edit</a>
                         </td>
