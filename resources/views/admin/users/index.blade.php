@@ -7,7 +7,7 @@
             <table class="table table-striped">
                 <thead>
                 <div>
-                    <a style="margin: 19px;" href="{{ route('users.create')}}" class="btn btn-primary">New user</a>
+                    <a style="margin: 19px;" href="{{ route('admin.users.create')}}" class="btn btn-primary">New user</a>
                 </div>
                 <tr>
                     <td>ID</td>
@@ -27,10 +27,10 @@
                         <td>{{$user->is_enabled}}</td>
                         <td>{{$user->is_staff}}</td>
                         <td>
-                            <a href="{{ route('users.edit',$user->id)}}" class="btn btn-primary">Edit</a>
+                            <a href="{{ route('admin.users.edit',$user->id)}}" class="btn btn-primary">Edit</a>
                         </td>
                         <td>
-                            <form action="{{ route('users.destroy', $user->id)}}" method="post">
+                            <form action="{{ route('admin.users.destroy', $user->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Delete</button>

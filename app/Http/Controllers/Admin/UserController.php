@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('users.index', compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -28,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('admin.users.create');
     }
 
     /**
@@ -70,7 +71,7 @@ class UserController extends Controller
         );
         $user->save();
 
-        return redirect('/users')->with('success', 'User created!');
+        return redirect()->route('admin.users.index')->with('success', 'User created!');
     }
 
     /**
@@ -96,7 +97,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        return view('users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -142,7 +143,7 @@ class UserController extends Controller
         $user->is_staff = isset($is_staff);
         $user->save();
 
-        return redirect('/users')->with('success', 'User updated!');
+        return redirect()->route('admin.users.index')->with('success', 'User updated!');
     }
 
     /**
@@ -156,6 +157,6 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect('/users')->with('success', 'User deleted!');
+        return redirect()->route('admin.users.index')->with('success', 'User deleted!');
     }
 }
