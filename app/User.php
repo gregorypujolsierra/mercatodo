@@ -14,11 +14,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * The attributes that are mass assignable.
      *
      * @var array
-     *
-     * @todo Add 'enabled' and 'is_staff' fields
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'is_enabled',
     ];
 
     /**
@@ -66,10 +64,10 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Check for the role
      *
-     * @param array $role
+     * @param string $role
      * @return bool
      */
-    public function hasRole(array $role)
+    public function hasRole(string $role)
     {
         if ($this->roles()->where('name', $role)->first()) {
             return true;

@@ -45,14 +45,20 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="roles" class="col-form-label-lg">{{ __('Roles:') }}</label>
                         <div>
-                            @foreach($roles as $role)
-                                <div class="form-check">
-                                    <label>{{ $role->name }}</label>
-                                    <input type="checkbox" name="roles[]" value="{{ $role->id }}">
-                                </div>
-                            @endforeach
+                            <div class="form-group col">
+                                <label for="roles" class="col-form-label-lg">{{ __('Roles:') }}</label>
+                                @foreach($roles as $role)
+                                    <div class="form-check">
+                                        <label>{{ $role->name }}</label>
+                                        <input type="checkbox" name="roles[]" value="{{ $role->id }}">
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="form-group col">
+                                <label for="is_enabled">{{ __('Enabled') }}</label>
+                                <input id="is_enabled" type="checkbox" name="is_enabled">
+                            </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">{{__('Add user')}}</button>

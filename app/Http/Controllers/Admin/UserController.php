@@ -52,6 +52,7 @@ class UserController extends Controller
         $name = $request->get('name');
         $email = $request->get('email');
         $password = $request->get('password');
+        $is_enabled = $request->get('is_enabled');
 
         $validator = Validator::make(
             [
@@ -72,6 +73,7 @@ class UserController extends Controller
                 'name' => $name,
                 'email' => $email,
                 'password' => Hash::make($password),
+                'is_enabled' => isset($is_enabled),
             ]
         );
         $user->save();
@@ -131,6 +133,7 @@ class UserController extends Controller
         $name = $request->get('name');
         $email = $request->get('email');
         $password = $request->get('password');
+        $is_enabled = $request->get('is_enabled');
 
         $name_validator = Validator::make(['name' => $name], ['name' => ['required', 'string', 'max:255']]);
         $email_validator = Validator::make(
@@ -154,6 +157,8 @@ class UserController extends Controller
             $password_validator->validate();
             $user->password = Hash::make($password);
         }
+        $user->is_enabled = isset($is_enabled);
+
         $user->save();
         $user->roles()->sync($request->roles);
 

@@ -14,6 +14,7 @@
                     <td>Name</td>
                     <td>Email</td>
                     <td>Roles</td>
+                    <td>Enabled</td>
                     <td colspan="2">Actions</td>
                 </tr>
                 </thead>
@@ -24,6 +25,7 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ implode(',', $user->roles()->get()->pluck('name')->toArray()) }}</td>
+                        <td>{{$user->is_enabled}}</td>
                         <td>
                             <a href="{{ route('admin.users.edit',$user->id)}}" class="btn btn-primary">Edit</a>
                         </td>
