@@ -4,18 +4,18 @@
     <div class="row">
         <div class="col-sm-12">
             <h1 class="display-3">Users</h1>
-            <table class="table table-striped">
+            <table class="table table-striped table-sm">
                 <thead>
                 <div>
                     <a style="margin: 19px;" href="{{ route('admin.users.create')}}" class="btn btn-primary">New user</a>
                 </div>
-                <tr>
+                <tr class="text-primary text-uppercase">
                     <td>ID</td>
                     <td>Name</td>
                     <td>Email</td>
                     <td>Roles</td>
                     <td>Enabled</td>
-                    <td colspan="2">Actions</td>
+                    <td>Actions</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,10 +26,8 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ implode(',', $user->roles()->get()->pluck('name')->toArray()) }}</td>
                         <td>{{$user->is_enabled}}</td>
-                        <td>
+                        <td class="row">
                             <a href="{{ route('admin.users.edit',$user->id)}}" class="btn btn-primary">Edit</a>
-                        </td>
-                        <td>
                             <form action="{{ route('admin.users.destroy', $user->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')

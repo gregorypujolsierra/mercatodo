@@ -1,9 +1,9 @@
 @extends('layouts.admin')
+
 @section('main')
     <div class="row">
         <div class="col-sm-8 offset-sm-2">
             <h1 class="display-3">Update a user</h1>
-
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -26,7 +26,6 @@
                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                     @enderror
                 </div>
-
                 <div class="form-group">
                     <label for="email" class="col-form-label-lg">{{__('Email:')}}</label>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -54,8 +53,9 @@
                                 <div class="form-check">
                                     <label>{{ $role->name }}</label>
                                     <input type="checkbox" name="roles[]" value="{{ $role->id }}"
-                                           @if (in_array($role->name, $user->roles()->get()->pluck('name')->toArray()))
-                                           checked @endif>
+                                            @if (in_array($role->name, $user->roles()->get()->pluck('name')->toArray()))
+                                                checked
+                                            @endif>
                                 </div>
                             @endforeach
                         </div>

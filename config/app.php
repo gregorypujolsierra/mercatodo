@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'MercaTodo Store'),
+    'admin_name' => env('ADMIN_APP_NAME', 'MercaTodo Admin'),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +68,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
