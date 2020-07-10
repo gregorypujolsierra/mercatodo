@@ -42,6 +42,8 @@ class UserController extends Controller
         $name = $request->get('name');
         $email = $request->get('email');
         $password = $request->get('password');
+        $is_enabled = $request->get('is_enabled');
+        $is_staff = $request->get('is_staff');
 
         $validator = Validator::make(
             [
@@ -62,6 +64,8 @@ class UserController extends Controller
                 'name' => $name,
                 'email' => $email,
                 'password' => Hash::make($password),
+                'is_enabled' => isset($is_enabled),
+                'is_staff' => isset($is_staff),
             ]
         );
         $user->save();
@@ -109,6 +113,8 @@ class UserController extends Controller
         $name = $request->get('name');
         $email = $request->get('email');
         $password = $request->get('password');
+        $is_enabled = $request->get('is_enabled');
+        $is_staff = $request->get('is_staff');
 
         $name_validator = Validator::make(['name' => $name], ['name' => ['required', 'string', 'max:255']]);
         $email_validator = Validator::make(
@@ -132,6 +138,8 @@ class UserController extends Controller
             $password_validator->validate();
             $user->password = Hash::make($password);
         }
+        $user->is_enabled = isset($is_enabled);
+        $user->is_staff = isset($is_staff);
         $user->save();
 
         return redirect('/users')->with('success', 'User updated!');
