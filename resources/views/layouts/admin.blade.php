@@ -24,6 +24,7 @@
                 <a class="navbar-brand" href="{{ route('admin.users.index') }}">
                     {{ config('app.admin_name', 'MercaTodo Admin') }}
                 </a>
+                <a class="navbar-brand" href="{{ route('home') }}">Home</a>
             </div>
         </nav>
         <div class="container">

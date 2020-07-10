@@ -16,6 +16,13 @@
 
                     You are logged in!
                 </div>
+                <div class="col-sm-12">
+                    @if(session()->get('warning'))
+                        <div class="alert alert-warning" role="alert">
+                            {{ session()->get('warning') }}
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
