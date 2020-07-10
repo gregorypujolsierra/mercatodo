@@ -21,9 +21,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('admin.users.index') }}">
-                    {{ config('app.admin_name', 'MercaTodo Admin') }}
-                </a>
+                <a class="navbar-brand" href="{{ url('/') }}">Initial page</a>
+                <h3>{{ config('app.admin_name', 'MercaTodo Admin') }}</h3>
                 <a class="navbar-brand" href="{{ route('home') }}">Home</a>
             </div>
         </nav>
