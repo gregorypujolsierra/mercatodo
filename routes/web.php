@@ -24,4 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 /**
  * @todo This route should be 'admin/users'
 */
-Route::resource('users', 'UserController');
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('/users', 'UserController');
+});
