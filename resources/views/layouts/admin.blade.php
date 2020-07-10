@@ -21,7 +21,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/users') }}">
+                <a class="navbar-brand" href="{{ route('admin.users.index') }}">
                     {{ config('app.admin_name', 'MercaTodo Admin') }}
                 </a>
             </div>

@@ -21,9 +21,6 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-/**
- * @todo This route should be 'admin/users'
-*/
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:list-users')->group(function () {
     Route::resource('/users', 'UserController');
 });

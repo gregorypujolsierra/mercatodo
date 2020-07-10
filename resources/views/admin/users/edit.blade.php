@@ -18,8 +18,7 @@
                 @method('PATCH')
                 @csrf
                 <div class="form-group">
-
-                    <label for="name">{{__('Name:')}}</label>
+                    <label for="name" class="col-form-label-lg">{{__('Name:')}}</label>
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
                            name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
 
@@ -29,7 +28,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="email">{{__('Email:')}}</label>
+                    <label for="email" class="col-form-label-lg">{{__('Email:')}}</label>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                            name="email" value="{{ $user->email }}" required autocomplete="email">
 
@@ -38,7 +37,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="password">{{ __('Password:') }}</label>
+                    <label for="password" class="col-form-label-lg">{{ __('Password:') }}</label>
                     <input id="password" type="password"
                            class="form-control @error('password') is-invalid @enderror" name="password"
                            autocomplete="new-password"/>
@@ -48,14 +47,17 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="is_enabled">{{ __('Enabled') }}</label>
-                    <input id="is_enabled" type="checkbox" name="is_enabled"
-                    @if ($user->is_enabled) checked @endif>
-                </div>
-                <div class="form-group">
-                    <label for="is_staff">{{ __('Staff') }}</label>
-                    <input id="is_staff" type="checkbox" name="is_staff"
-                           @if ($user->is_staff) checked @endif>
+                    <label for="roles" class="col-form-label-lg">{{ __('Roles:') }}</label>
+                    <div>
+                        @foreach($roles as $role)
+                            <div class="form-check">
+                                <label>{{ $role->name }}</label>
+                                <input type="checkbox" name="roles[]" value="{{ $role->id }}"
+                                       @if (in_array($role->name, $user->roles()->get()->pluck('name')->toArray()))
+                                       checked @endif>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>

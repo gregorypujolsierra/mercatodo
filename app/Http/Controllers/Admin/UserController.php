@@ -3,13 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display the list of users.
      *
@@ -29,7 +36,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+
+        return view('admin.users.create', compact(['roles']));
     }
 
     /**
@@ -43,8 +52,6 @@ class UserController extends Controller
         $name = $request->get('name');
         $email = $request->get('email');
         $password = $request->get('password');
-        $is_enabled = $request->get('is_enabled');
-        $is_staff = $request->get('is_staff');
 
         $validator = Validator::make(
             [
@@ -65,11 +72,10 @@ class UserController extends Controller
                 'name' => $name,
                 'email' => $email,
                 'password' => Hash::make($password),
-                'is_enabled' => isset($is_enabled),
-                'is_staff' => isset($is_staff),
             ]
         );
         $user->save();
+        $user->roles()->sync($request->roles);
 
         return redirect()->route('admin.users.index')->with('success', 'User created!');
     }
@@ -82,7 +88,7 @@ class UserController extends Controller
      *
      * @todo Create a user details view
      */
-    public function show($id)
+    public function show(int $id)
     {
         return null;
     }
@@ -92,12 +98,19 @@ class UserController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * @todo Redirect to 404 if $id doesn't exists in db
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        $user = User::find($id);
+        if (Gate::denies('manage-users')) {
+            return redirect(route('admin.users.index'));
+        }
 
-        return view('admin.users.edit', compact('user'));
+        $user = User::find($id);
+        $roles = Role::all();
+
+        return view('admin.users.edit', compact(['user', 'roles']));
     }
 
     /**
@@ -109,13 +122,15 @@ class UserController extends Controller
      *
      * @todo Add more password restrictions to make it secure
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
+        if (Gate::denies('manage-users')) {
+            return redirect(route('admin.users.index'));
+        }
+
         $name = $request->get('name');
         $email = $request->get('email');
         $password = $request->get('password');
-        $is_enabled = $request->get('is_enabled');
-        $is_staff = $request->get('is_staff');
 
         $name_validator = Validator::make(['name' => $name], ['name' => ['required', 'string', 'max:255']]);
         $email_validator = Validator::make(
@@ -139,9 +154,8 @@ class UserController extends Controller
             $password_validator->validate();
             $user->password = Hash::make($password);
         }
-        $user->is_enabled = isset($is_enabled);
-        $user->is_staff = isset($is_staff);
         $user->save();
+        $user->roles()->sync($request->roles);
 
         return redirect()->route('admin.users.index')->with('success', 'User updated!');
     }
@@ -152,8 +166,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
+        if (Gate::denies('manage-users')) {
+            return redirect(route('admin.users.index'));
+        }
+
         $user = User::find($id);
         $user->delete();
 
