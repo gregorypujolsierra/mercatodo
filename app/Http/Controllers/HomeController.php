@@ -12,10 +12,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware(['auth', 'verified']);
-    }
 
     /**
      * Show the application dashboard.
@@ -28,6 +24,7 @@ class HomeController extends Controller
         if (Gate::denies('is-enabled')) {
             $request->session()->flash('warning', 'Your user is disabled. Please contact us: admin@mercatodo.store');
         }
+
         return view('home');
     }
 }

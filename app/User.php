@@ -16,7 +16,10 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_enabled',
+        'name',
+        'email',
+        'password',
+        'is_enabled',
     ];
 
     /**
@@ -25,7 +28,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -53,11 +57,12 @@ class User extends Authenticatable implements MustVerifyEmail
      * @param array $roles
      * @return bool
      */
-    public function hasAnyRoles(array $roles)
+    public function hasAnyRoles(array $roles): bool
     {
         if ($this->roles()->whereIn('name', $roles)->first()) {
             return true;
         }
+
         return false;
     }
 
@@ -67,11 +72,12 @@ class User extends Authenticatable implements MustVerifyEmail
      * @param string $role
      * @return bool
      */
-    public function hasRole(string $role)
+    public function hasRole(string $role): bool
     {
         if ($this->roles()->where('name', $role)->first()) {
             return true;
         }
+
         return false;
     }
 
