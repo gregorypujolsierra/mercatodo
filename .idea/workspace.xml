@@ -11,10 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d15ec5de-c884-4b1d-891c-d334c5867327" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/session.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/session.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mercatodo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mercatodo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +25,18 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
     <include_path>
@@ -129,6 +139,7 @@
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
       <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-permission" />
     </include_path>
   </component>
   <component name="ProjectId" id="1dq8oO2ggfn4Eph3VJOQmZyi4Cf" />
@@ -149,9 +160,13 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin" />
+      <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin" />
       <recent name="$PROJECT_DIR$/resources/views/layouts" />
       <recent name="$PROJECT_DIR$/resources/views/users" />
       <recent name="$PROJECT_DIR$/resources/views" />
@@ -210,7 +225,15 @@
       <workItem from="1593141437619" duration="12021000" />
       <workItem from="1593263755475" duration="2166000" />
       <workItem from="1593285461397" duration="2922000" />
-      <workItem from="1593291280566" duration="19612000" />
+      <workItem from="1593291280566" duration="45393000" />
+      <workItem from="1593658441129" duration="2505000" />
+      <workItem from="1593704391465" duration="8089000" />
+      <workItem from="1593788242713" duration="2178000" />
+      <workItem from="1594349963995" duration="1245000" />
+      <workItem from="1594478902018" duration="675000" />
+      <workItem from="1594697868112" duration="3502000" />
+      <workItem from="1595212349719" duration="2116000" />
+      <workItem from="1595383161469" duration="1693000" />
     </task>
     <servers />
   </component>
@@ -254,45 +277,65 @@
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
     <state x="644" y="334" width="612" height="396" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1012@0.27.1920.1012" timestamp="1593353459374" />
+    <state x="768" y="251" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1593708851244">
+      <screen x="0" y="27" width="1920" height="1012" />
+    </state>
+    <state x="768" y="251" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1012@0.27.1920.1012" timestamp="1593708851244" />
     <state x="693" y="281" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1593346241008">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
     <state x="693" y="281" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.1012@0.27.1920.1012" timestamp="1593346241008" />
-    <state x="693" y="290" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593347295515">
+    <state x="693" y="290" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593367216838">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
-    <state x="693" y="290" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1012@0.27.1920.1012" timestamp="1593347295515" />
+    <state x="693" y="290" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.1012@0.27.1920.1012" timestamp="1593367216838" />
     <state x="586" y="161" width="737" height="742" key="#phpunit.xml" timestamp="1593293607391">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
     <state x="586" y="161" width="737" height="742" key="#phpunit.xml/0.27.1920.1012@0.27.1920.1012" timestamp="1593293607391" />
+    <state x="932" y="112" width="893" height="814" key="DiffContextDialog" timestamp="1593486597016">
+      <screen x="0" y="27" width="1920" height="1012" />
+    </state>
+    <state x="932" y="112" width="893" height="814" key="DiffContextDialog/0.27.1920.1012@0.27.1920.1012" timestamp="1593486597016" />
     <state x="743" y="290" width="424" height="484" key="FileChooserDialogImpl" timestamp="1593346344813">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
     <state x="743" y="290" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1012@0.27.1920.1012" timestamp="1593346344813" />
-    <state width="914" height="265" key="GridCell.Tab.0.bottom" timestamp="1593354216795">
+    <state width="914" height="265" key="GridCell.Tab.0.bottom" timestamp="1593490769946">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
-    <state width="914" height="265" key="GridCell.Tab.0.bottom/0.27.1920.1012@0.27.1920.1012" timestamp="1593354216795" />
-    <state width="914" height="265" key="GridCell.Tab.0.center" timestamp="1593354216794">
+    <state width="914" height="265" key="GridCell.Tab.0.bottom/0.27.1920.1012@0.27.1920.1012" timestamp="1593490769946" />
+    <state width="914" height="265" key="GridCell.Tab.0.center" timestamp="1593490769945">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
-    <state width="914" height="265" key="GridCell.Tab.0.center/0.27.1920.1012@0.27.1920.1012" timestamp="1593354216794" />
-    <state width="914" height="265" key="GridCell.Tab.0.left" timestamp="1593354216794">
+    <state width="914" height="265" key="GridCell.Tab.0.center/0.27.1920.1012@0.27.1920.1012" timestamp="1593490769945" />
+    <state width="914" height="265" key="GridCell.Tab.0.left" timestamp="1593490769945">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
-    <state width="914" height="265" key="GridCell.Tab.0.left/0.27.1920.1012@0.27.1920.1012" timestamp="1593354216794" />
-    <state width="914" height="265" key="GridCell.Tab.0.right" timestamp="1593354216794">
+    <state width="914" height="265" key="GridCell.Tab.0.left/0.27.1920.1012@0.27.1920.1012" timestamp="1593490769945" />
+    <state width="914" height="265" key="GridCell.Tab.0.right" timestamp="1593490769945">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
-    <state width="914" height="265" key="GridCell.Tab.0.right/0.27.1920.1012@0.27.1920.1012" timestamp="1593354216794" />
-    <state x="651" y="271" width="1050" height="580" key="find.popup" timestamp="1593349046713">
+    <state width="914" height="265" key="GridCell.Tab.0.right/0.27.1920.1012@0.27.1920.1012" timestamp="1593490769945" />
+    <state x="449" y="167" key="SettingsEditor" timestamp="1593707910953">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
-    <state x="651" y="271" width="1050" height="580" key="find.popup/0.27.1920.1012@0.27.1920.1012" timestamp="1593349046713" />
-    <state x="623" y="247" width="672" height="678" key="search.everywhere.popup" timestamp="1593350604451">
+    <state x="449" y="167" key="SettingsEditor/0.27.1920.1012@0.27.1920.1012" timestamp="1593707910953" />
+    <state x="650" y="210" width="609" height="643" key="VCS.ChangeListViewerDialog" timestamp="1594701880742">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
-    <state x="623" y="247" width="672" height="678" key="search.everywhere.popup/0.27.1920.1012@0.27.1920.1012" timestamp="1593350604451" />
+    <state x="650" y="210" width="609" height="643" key="VCS.ChangeListViewerDialog/0.27.1920.1012@0.27.1920.1012" timestamp="1594701880742" />
+    <state x="731" y="447" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593395207814">
+      <screen x="0" y="27" width="1920" height="1012" />
+    </state>
+    <state x="731" y="447" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1012@0.27.1920.1012" timestamp="1593395207814" />
+    <state x="610" y="51" width="1050" height="790" key="find.popup" timestamp="1593709428990">
+      <screen x="0" y="27" width="1920" height="1012" />
+    </state>
+    <state x="610" y="51" width="1050" height="790" key="find.popup/0.27.1920.1012@0.27.1920.1012" timestamp="1593709428990" />
+    <state x="623" y="247" width="672" height="678" key="search.everywhere.popup" timestamp="1595212367896">
+      <screen x="0" y="27" width="1920" height="1012" />
+    </state>
+    <state x="623" y="247" width="672" height="678" key="search.everywhere.popup/0.27.1920.1012@0.27.1920.1012" timestamp="1595212367896" />
   </component>
 </project>
