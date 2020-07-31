@@ -20,8 +20,8 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth', 'verified']);
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:list-users')->group(function () {
-    Route::resource('/users', 'UserController');
+    Route::resource('/users', 'UserController')->middleware('auth');
 });

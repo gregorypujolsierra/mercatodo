@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display the list of users.
      *
@@ -44,7 +39,7 @@ class UserController extends Controller
     /**
      * Store a newly created user in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
@@ -85,7 +80,7 @@ class UserController extends Controller
     /**
      * Display the specified user.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      *
      * @todo Create a user details view
@@ -98,7 +93,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified user.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
      * @todo Redirect to 404 if $id doesn't exists in db
@@ -118,8 +113,8 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      *
      * @todo Add more password restrictions to make it secure
@@ -168,7 +163,7 @@ class UserController extends Controller
     /**
      * Remove the specified user from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy(int $id)
