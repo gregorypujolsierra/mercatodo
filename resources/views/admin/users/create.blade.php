@@ -44,6 +44,7 @@
                         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                         @enderror
                     </div>
+                    @can('manage-users')
                     <div class="form-group">
                         <div>
                             <div class="form-group col">
@@ -51,7 +52,10 @@
                                 @foreach($roles as $role)
                                     <div class="form-check">
                                         <label>{{ $role->name }}</label>
-                                        <input type="checkbox" name="roles[]" value="{{ $role->id }}">
+                                        <input type="radio" name="roles" value="{{ $role->id }}"
+                                        @if ($role->id == 3)
+                                            checked
+                                        @endif>
                                     </div>
                                 @endforeach
                             </div>
@@ -61,6 +65,7 @@
                             </div>
                         </div>
                     </div>
+                    @endcan
                     <button type="submit" class="btn btn-primary">{{__('Add user')}}</button>
                 </form>
             </div>
