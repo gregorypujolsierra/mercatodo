@@ -24,7 +24,7 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ implode(',', $user->roles()->get()->pluck('name')->toArray()) }}</td>
+                        <td>{{ $user->role->name ?? '- unset -' }}</td>
                         <td>{{$user->is_enabled}}</td>
                         <td class="row">
                             <a href="{{ route('admin.users.edit',$user->id)}}" class="btn btn-primary">Edit</a>
@@ -44,6 +44,14 @@
         @if(session()->get('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
+            </div>
+        @elseif(session()->get('warning'))
+            <div class="alert alert-warning">
+                {{ session()->get('warning') }}
+            </div>
+        @elseif(session()->get('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
             </div>
         @endif
     </div>

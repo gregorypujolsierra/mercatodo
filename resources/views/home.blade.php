@@ -16,9 +16,9 @@
                     {{ __('Welcome') . ' ' . Auth::user()->name}}
                 </div>
                 <div class="col-sm-12">
-                    @if(session()->get('warning'))
-                        <div class="alert alert-warning" role="alert">
-                            {{ session()->get('warning') }}
+                    @if(session()->get('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session()->get('error') }}
                         </div>
                     @endif
                 </div>

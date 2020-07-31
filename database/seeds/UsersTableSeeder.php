@@ -15,36 +15,37 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::truncate();
-        DB::table('role_user')->truncate();
 
         $adminRole = Role::where('name', 'admin')->first();
         $staffRole = Role::where('name', 'staff')->first();
         $userRole = Role::where('name', 'user')->first();
 
-        $admin = User::create(
+        User::create(
             [
                 'name' => 'Greg Admin',
                 'email' => 'admin@admin',
                 'password' => Hash::make('1234'),
+                'is_enabled' => 1,
+                'role_id' => $adminRole->id,
             ]
         );
-        $staff = User::create(
+        User::create(
             [
                 'name' => 'Greg Staff',
                 'email' => 'staff@staff',
                 'password' => Hash::make('1234'),
+                'is_enabled' => 1,
+                'role_id' => $staffRole->id,
             ]
         );
-        $user = User::create(
+        User::create(
             [
                 'name' => 'Greg User',
                 'email' => 'user@user',
                 'password' => Hash::make('1234'),
+                'is_enabled' => 1,
+                'role_id' => $userRole->id,
             ]
         );
-
-        $admin->roles()->attach($adminRole);
-        $staff->roles()->attach($staffRole);
-        $user->roles()->attach($userRole);
     }
 }

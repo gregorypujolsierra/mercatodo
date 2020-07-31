@@ -52,8 +52,8 @@
                             @foreach($roles as $role)
                                 <div class="form-check">
                                     <label>{{ $role->name }}</label>
-                                    <input type="checkbox" name="roles[]" value="{{ $role->id }}"
-                                            @if (in_array($role->name, $user->roles()->get()->pluck('name')->toArray()))
+                                    <input type="radio" name="roles" value="{{ $role->id }}"
+                                            @if ($role->id == $user->role_id)
                                                 checked
                                             @endif>
                                 </div>

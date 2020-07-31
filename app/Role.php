@@ -3,14 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Role extends Model
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return HasMany
      */
-    public function users()
+    public function users(): HasMany
     {
-        return $this->belongsToMany('App\User');
+        return $this->hasMany('App\User');
     }
 }

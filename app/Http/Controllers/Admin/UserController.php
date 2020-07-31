@@ -5,17 +5,22 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Role;
 use App\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
     /**
      * Display the list of users.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -27,7 +32,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new user.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -39,8 +44,8 @@ class UserController extends Controller
     /**
      * Store a newly created user in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Request $request
+     * @return Application|RedirectResponse|Redirector
      */
     public function store(Request $request)
     {
@@ -48,6 +53,7 @@ class UserController extends Controller
         $email = $request->get('email');
         $password = $request->get('password');
         $is_enabled = $request->get('is_enabled');
+        $role = $request->get('roles') ?? 3;
 
         $validator = Validator::make(
             [
@@ -69,12 +75,12 @@ class UserController extends Controller
                 'email' => $email,
                 'password' => Hash::make($password),
                 'is_enabled' => isset($is_enabled),
+                'role_id' => (int)$role,
             ]
         );
         $user->save();
-        $user->roles()->sync($request->roles);
 
-        return redirect()->route('admin.users.index')->with('success', 'User created!');
+        return redirect()->route('admin.users.index')->with($type = 'success', 'User created!');
     }
 
     /**
@@ -94,14 +100,15 @@ class UserController extends Controller
      * Show the form for editing the specified user.
      *
      * @param int $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|RedirectResponse|Factory|View
      *
      * @todo Redirect to 404 if $id doesn't exists in db
      */
     public function edit(int $id)
     {
         if (Gate::denies('manage-users')) {
-            return redirect(route('admin.users.index'));
+            return redirect(route('admin.users.index'))
+                ->with($type = 'error', 'You do not have permission for this action');
         }
 
         $user = User::find($id);
@@ -113,9 +120,9 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return Application|RedirectResponse|Redirector
      *
      * @todo Add more password restrictions to make it secure
      */
@@ -129,6 +136,7 @@ class UserController extends Controller
         $email = $request->get('email');
         $password = $request->get('password');
         $is_enabled = $request->get('is_enabled');
+        $role = $request->get('roles') ?? 3;
 
         $name_validator = Validator::make(['name' => $name], ['name' => ['required', 'string', 'max:255']]);
         $email_validator = Validator::make(
@@ -153,9 +161,9 @@ class UserController extends Controller
             $user->password = Hash::make($password);
         }
         $user->is_enabled = isset($is_enabled);
+        $user->role_id = (int)$role;
 
         $user->save();
-        $user->roles()->sync($request->roles);
 
         return redirect()->route('admin.users.index')->with('success', 'User updated!');
     }
@@ -164,12 +172,13 @@ class UserController extends Controller
      * Remove the specified user from storage.
      *
      * @param int $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return Application|RedirectResponse|Redirector
      */
     public function destroy(int $id)
     {
         if (Gate::denies('manage-users')) {
-            return redirect(route('admin.users.index'));
+            return redirect(route('admin.users.index'))
+                ->with($type = 'error', 'You do not have permission for this action');
         }
 
         $user = User::find($id);
