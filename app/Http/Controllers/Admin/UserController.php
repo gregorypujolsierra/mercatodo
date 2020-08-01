@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Role;
 use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -44,30 +44,16 @@ class UserController extends Controller
     /**
      * Store a newly created user in storage.
      *
-     * @param Request $request
+     * @param CreateUserRequest $request
      * @return Application|RedirectResponse|Redirector
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
         $name = $request->get('name');
         $email = $request->get('email');
         $password = $request->get('password');
         $is_enabled = $request->get('is_enabled');
         $role = $request->get('roles') ?? 3;
-
-        $validator = Validator::make(
-            [
-                'name' => $name,
-                'email' => $email,
-                'password' => $password,
-            ],
-            [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:4'],
-            ]
-        );
-        $validator->validate();
 
         $user = new User(
             [
@@ -120,13 +106,13 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      *
-     * @param Request $request
+     * @param UpdateUserRequest $request
      * @param int $id
      * @return Application|RedirectResponse|Redirector
      *
      * @todo Add more password restrictions to make it secure
      */
-    public function update(Request $request, int $id)
+    public function update(UpdateUserRequest $request, int $id)
     {
         if (Gate::denies('manage-users')) {
             return redirect(route('admin.users.index'));
@@ -138,26 +124,14 @@ class UserController extends Controller
         $is_enabled = $request->get('is_enabled');
         $role = $request->get('roles') ?? 3;
 
-        $name_validator = Validator::make(['name' => $name], ['name' => ['required', 'string', 'max:255']]);
-        $email_validator = Validator::make(
-            ['email' => $email],
-            ['email' => ['required', 'string', 'email', 'max:255', 'unique:users']]
-        );
-        $password_validator = Validator::make(
-            ['password' => $password],
-            ['password' => ['required', 'string', 'min:4']]
-        );
-
-        $name_validator->validate();
-
         $user = User::find($id);
-        $user->name = $name;
+        if ($user->name != $name) {
+            $user->name = $name;
+        };
         if ($user->email != $email) {
-            $email_validator->validate();
             $user->email = $email;
         }
-        if ($password) {
-            $password_validator->validate();
+        if (!is_null($request->get('password'))) {
             $user->password = Hash::make($password);
         }
         $user->is_enabled = isset($is_enabled);

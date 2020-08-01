@@ -46,6 +46,8 @@ class RegisterController extends Controller
      *
      * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
+     *
+     * @todo implement CreateUserRequest instead this validator
      */
     protected function validator(array $data)
     {
