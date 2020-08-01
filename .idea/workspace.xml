@@ -11,22 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d15ec5de-c884-4b1d-891c-d334c5867327" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_07_30_225728_add_role_id_column_to_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Role.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/RolesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/RolesTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +158,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Requests" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -182,17 +170,18 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Requests" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/resources" />
+      <recent name="$PROJECT_DIR$/resources/views/users" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/admin" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin" />
       <recent name="$PROJECT_DIR$/resources/views/layouts" />
       <recent name="$PROJECT_DIR$/resources/views/users" />
       <recent name="$PROJECT_DIR$/resources/views" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/resources" />
-      <recent name="$PROJECT_DIR$/resources/views/users" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.IndexTest.userIndexIsWorking">
@@ -299,6 +288,10 @@
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
     <state x="768" y="251" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1012@0.27.1920.1012" timestamp="1593708851244" />
+    <state x="591" y="77" width="718" height="909" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1596244251854">
+      <screen x="0" y="27" width="1920" height="1012" />
+    </state>
+    <state x="591" y="77" width="718" height="909" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.1012@0.27.1920.1012" timestamp="1596244251854" />
     <state x="693" y="281" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1593346241008">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
@@ -347,13 +340,13 @@
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
     <state x="731" y="447" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1012@0.27.1920.1012" timestamp="1593395207814" />
-    <state x="610" y="51" width="1050" height="790" key="find.popup" timestamp="1596224915423">
+    <state x="610" y="51" width="1050" height="790" key="find.popup" timestamp="1596238077975">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
-    <state x="610" y="51" width="1050" height="790" key="find.popup/0.27.1920.1012@0.27.1920.1012" timestamp="1596224915423" />
-    <state x="623" y="247" width="672" height="678" key="search.everywhere.popup" timestamp="1596223606175">
+    <state x="610" y="51" width="1050" height="790" key="find.popup/0.27.1920.1012@0.27.1920.1012" timestamp="1596238077975" />
+    <state x="623" y="247" width="672" height="678" key="search.everywhere.popup" timestamp="1596236455455">
       <screen x="0" y="27" width="1920" height="1012" />
     </state>
-    <state x="623" y="247" width="672" height="678" key="search.everywhere.popup/0.27.1920.1012@0.27.1920.1012" timestamp="1596223606175" />
+    <state x="623" y="247" width="672" height="678" key="search.everywhere.popup/0.27.1920.1012@0.27.1920.1012" timestamp="1596236455455" />
   </component>
 </project>
