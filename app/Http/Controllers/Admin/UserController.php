@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Role;
 use App\User;
 use Illuminate\Contracts\Foundation\Application;
@@ -13,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -44,10 +45,10 @@ class UserController extends Controller
     /**
      * Store a newly created user in storage.
      *
-     * @param CreateUserRequest $request
+     * @param StoreUserRequest $request
      * @return Application|RedirectResponse|Redirector
      */
-    public function store(CreateUserRequest $request)
+    public function store(StoreUserRequest $request)
     {
         $name = $request->get('name');
         $email = $request->get('email');
@@ -129,6 +130,13 @@ class UserController extends Controller
             $user->name = $name;
         };
         if ($user->email != $email) {
+            $email_validator = Validator::make(
+                [$email],
+                [
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                ]
+            );
+            $email_validator->validate();
             $user->email = $email;
         }
         if (!is_null($request->get('password'))) {
