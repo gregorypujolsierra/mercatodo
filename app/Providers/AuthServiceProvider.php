@@ -39,10 +39,27 @@ class AuthServiceProvider extends ServiceProvider
             }
         );
 
+        /**
+         * @todo Replace field 'is_enabled' to 'user_enabled'
+        */
         Gate::define(
-            'is-enabled',
+            'user-enabled',
             function ($user) {
                 return $user->is_enabled;
+            }
+        );
+
+        Gate::define(
+            'list-products',
+            function ($user) {
+                return $user->hasAnyRoles(['admin', 'staff']);
+            }
+        );
+
+        Gate::define(
+            'manage-products',
+            function ($user) {
+                return $user->hasRole('admin');
             }
         );
     }

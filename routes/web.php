@@ -22,6 +22,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth', 'verified']);
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:list-users')->group(function () {
-    Route::resource('/users', 'UserController')->middleware('auth');
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('/users', 'UserController')->middleware('auth')->middleware('can:list-users');
+    Route::resource('/products', 'ProductController')->middleware('auth')->middleware('can:list-products');
 });
