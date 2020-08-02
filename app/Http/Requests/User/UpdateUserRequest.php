@@ -23,17 +23,18 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
-        $validation_array = [
-            'name' => ['required', 'string', 'max:255'],
+        $rules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$this->user,
         ];
 
         if (!is_null($this->get('password'))) {
-            $validation_array = array_merge(
-                $validation_array,
-                ['password' => ['required', 'string', 'min:4']]
+            $rules = array_merge(
+                $rules,
+                ['password' => 'required|string|min:4']
             );
         }
 
-        return $validation_array;
+        return $rules;
     }
 }
