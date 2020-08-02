@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        if (Gate::denies('is-enabled')) {
+        if (Gate::denies('user-enabled')) {
             $request->session()->flash('error', 'Your user is disabled. Please contact us: admin@mercatodo.store');
         }
 
