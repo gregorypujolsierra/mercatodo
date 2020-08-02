@@ -25,7 +25,7 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role->name ?? '- unset -' }}</td>
-                        <td>{{$user->is_enabled}}</td>
+                        <td>{{$user->enabled}}</td>
                         <td class="row">
                             <a href="{{ route('admin.users.edit',$user->id)}}" class="btn btn-primary">Edit</a>
                             <form action="{{ route('admin.users.destroy', $user->id)}}" method="post">

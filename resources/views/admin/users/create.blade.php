@@ -60,8 +60,8 @@
                                 @endforeach
                             </div>
                             <div class="form-group col">
-                                <label for="is_enabled">{{ __('Enabled') }}</label>
-                                <input id="is_enabled" type="checkbox" name="is_enabled">
+                                <label for="enabled">{{ __('Enabled') }}</label>
+                                <input id="enabled" type="checkbox" name="enabled">
                             </div>
                         </div>
                     </div>

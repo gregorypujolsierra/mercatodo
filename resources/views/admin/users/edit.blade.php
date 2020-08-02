@@ -60,9 +60,9 @@
                             @endforeach
                         </div>
                         <div class="form-group col">
-                            <label for="is_enabled">{{ __('Enabled') }}</label>
-                            <input id="is_enabled" type="checkbox" name="is_enabled"
-                                   @if ($user->is_enabled) checked @endif>
+                            <label for="enabled">{{ __('Enabled') }}</label>
+                            <input id="enabled" type="checkbox" name="enabled"
+                                   @if ($user->enabled) checked @endif>
                         </div>
                     </div>
                 </div>
