@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Greg Admin',
                 'email' => 'admin@admin',
                 'password' => Hash::make('1234'),
-                'is_enabled' => 1,
+                'enabled' => 1,
                 'role_id' => $adminRole->id,
             ]
         );
@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Greg Staff',
                 'email' => 'staff@staff',
                 'password' => Hash::make('1234'),
-                'is_enabled' => 1,
+                'enabled' => 1,
                 'role_id' => $staffRole->id,
             ]
         );
@@ -43,7 +43,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Greg User',
                 'email' => 'user@user',
                 'password' => Hash::make('1234'),
-                'is_enabled' => 1,
+                'enabled' => 1,
                 'role_id' => $userRole->id,
             ]
         );

@@ -53,7 +53,7 @@ class UserController extends Controller
         $name = $request->get('name');
         $email = $request->get('email');
         $password = $request->get('password');
-        $is_enabled = $request->get('is_enabled');
+        $enabled = $request->get('enabled');
         $role = $request->get('roles') ?? 3;
 
         $user = new User(
@@ -61,7 +61,7 @@ class UserController extends Controller
                 'name' => $name,
                 'email' => $email,
                 'password' => Hash::make($password),
-                'is_enabled' => isset($is_enabled),
+                'enabled' => isset($enabled),
                 'role_id' => (int)$role,
             ]
         );
@@ -122,7 +122,7 @@ class UserController extends Controller
         $name = $request->get('name');
         $email = $request->get('email');
         $password = $request->get('password');
-        $is_enabled = $request->get('is_enabled');
+        $enabled = $request->get('enabled');
         $role = $request->get('roles') ?? 3;
 
         $user = User::find($id);
@@ -139,7 +139,7 @@ class UserController extends Controller
         if (!is_null($request->get('password'))) {
             $user->password = Hash::make($password);
         }
-        $user->is_enabled = isset($is_enabled);
+        $user->enabled = isset($enabled);
         $user->role_id = (int)$role;
 
         $user->save();

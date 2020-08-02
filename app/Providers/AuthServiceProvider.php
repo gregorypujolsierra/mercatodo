@@ -45,7 +45,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define(
             'user-enabled',
             function ($user) {
-                return $user->is_enabled;
+                return $user->enabled;
             }
         );
 
