@@ -14,8 +14,9 @@
                 </div>
                 <br/>
             @endif
-            <form method="post" action="{{ route('admin.products.update', $product->id) }}">
-                @method('PATCH')
+            <form method="post" action="{{ route('admin.products.update', $product->id) }}"
+                  enctype="multipart/form-data">
+            @method('PATCH')
                 @csrf
                 <div class="form-group">
                     <label for="sku" class="col-form-label-lg">{{__('Sku:')}}</label>
@@ -43,6 +44,18 @@
                     @error('description')
                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                     @enderror
+                </div>
+                <div class="form-group">
+                    <label for="image" class="col-form-label-lg">{{__('Image:')}}</label>
+
+                    <div class="form-group">
+                        <label>{{__('Choose image')}}</label>
+                        <input id="image" type="file" name="image">
+                    </div>
+
+                    @if($product->image)
+                        <img src="{{ $product->image }}" style="width:100px" alt="{{ $product->name }}">
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="price" class="col-form-label-lg">{{__('Price:')}}</label>

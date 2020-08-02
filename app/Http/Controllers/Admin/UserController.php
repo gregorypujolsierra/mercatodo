@@ -130,10 +130,6 @@ class UserController extends Controller
             $user->name = $name;
         };
         if ($user->email != $email) {
-            $email_validator = Validator::make(
-                ['email' => $email], ['email' => 'required|string|email|max:255|unique:users']
-            );
-            $email_validator->validate();
             $user->email = $email;
         }
         if (!is_null($request->get('password'))) {

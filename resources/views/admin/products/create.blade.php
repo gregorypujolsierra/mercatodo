@@ -14,7 +14,7 @@
                         </ul>
                     </div><br/>
                 @endif
-                <form method="post" action="{{ route('admin.products.store') }}">
+                <form method="post" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="sku" class="col-form-label-lg">{{__('Sku:')}}</label>
@@ -44,9 +44,17 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="image" class="col-form-label-lg">{{__('Image:')}}</label>
+
+                        <div class="form-group">
+                            <label>{{__('Choose image')}}</label>
+                            <input id="image" type="file" name="image">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="price" class="col-form-label-lg">{{__('Price:')}}</label>
                         <input id="price" type="number" class="form-control @error('price') is-invalid @enderror"
-                               name="price" value="{{ old('price') }}" required autocomplete="price">
+                               name="price" value="{{ old('price') | 0}}" required autocomplete="price">
 
                         @error('price')
                         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -55,7 +63,7 @@
                     <div class="form-group">
                         <label for="stock" class="col-form-label-lg">{{__('Stock:')}}</label>
                         <input id="stock" type="number" class="form-control @error('stock') is-invalid @enderror"
-                               name="stock" value="{{ old('stock') }}" required autocomplete="stock">
+                               name="stock" value="{{ old('stock') | 0 }}" required autocomplete="stock">
 
                         @error('stock')
                         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>

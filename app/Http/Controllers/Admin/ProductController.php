@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -23,7 +23,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('id', 'DESC')->paginate(5);
         $section_title = 'Products';
 
         return view('admin.products.index', compact(['products', 'section_title']));
@@ -63,6 +63,10 @@ class ProductController extends Controller
             ]
         );
 
+        if ($request->file('image')) {
+            $path = Storage::disk('public')->put('images/products', $request->file('image'));
+            $product->image = asset($path);
+        }
         $product->save();
 
         return redirect()->route('admin.products.index')->with($type = 'success', 'Product created!');
@@ -120,20 +124,16 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         if ($product->sku != $sku) {
-            $sku_validator = Validator::make(
-                ['sku' => $sku], ['sku' => 'required|string|max:255|unique:products']
-            );
-            $sku_validator->validate();
             $product->sku = $sku;
         }
         if ($product->name != $name) {
-            $name_validator = Validator::make(
-                ['name' => $name], ['name' => 'required|string|max:255|unique:products']
-            );
-            $name_validator->validate();
             $product->name = $name;
         }
         $product->description = $request->get('description');
+        if ($request->file('image')) {
+            $path = Storage::disk('public')->put('images/products', $request->file('image'));
+            $product->image = asset($path);
+        }
         $product->price = $price;
         $product->stock = $stock;
         $product->enabled = isset($enabled);

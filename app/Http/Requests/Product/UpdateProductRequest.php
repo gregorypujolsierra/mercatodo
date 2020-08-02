@@ -23,9 +23,17 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
+            'sku' => 'required|string|max:255|unique:products,sku,'.$this->product,
+            'name' => 'required|string|max:255|unique:products,name,'.$this->product,
             'price' => 'required|min:0|int',
             'stock' => 'required|min:0|int',
         ];
+
+        if ($this->get('image')) {
+            $rules = array_merge($rules, ['image' => 'mimes:jpg,jpeg,png']);
+        }
+
+        return $rules;
     }
 }

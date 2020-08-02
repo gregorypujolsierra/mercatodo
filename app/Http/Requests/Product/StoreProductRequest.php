@@ -23,11 +23,17 @@ class StoreProductRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'sku' => 'required|string|max:255|unique:products',
             'name' => 'required|string|max:255|unique:products',
-            'price' => 'required|int|min:0',
-            'stock' => 'required|int|min:0',
+            'price' => 'required|min:0|int',
+            'stock' => 'required|min:0|int',
         ];
+
+        if ($this->hasFile('image')) {
+            $rules = array_merge($rules, ['image' => 'mimes:jpg,jpeg,png']);
+        }
+
+        return $rules;
     }
 }
