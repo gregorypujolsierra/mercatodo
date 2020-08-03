@@ -21,7 +21,7 @@ class StoreProductRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $rules = [
             'sku' => 'required|string|max:255|unique:products',

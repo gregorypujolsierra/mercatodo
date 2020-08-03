@@ -6,20 +6,59 @@
             <h1 class="display-3">Products</h1>
             <table class="table table-striped table-sm">
                 <thead>
-                <div>
-                    <a style="margin: 19px;" href="{{ route('admin.products.create')}}" class="btn btn-primary">New product</a>
+                <div class="navbar">
+                    <div>
+                        <a style="margin: 19px;" href="{{ route('admin.products.create')}}" class="btn btn-primary">New product</a>
+                    </div>
+                    <div class="form-inline float-right">
+                        <form class="">
+                            <div class="form-group">
+                                <input type="number" id="min_price" name="min_price" style="width: 90px;"
+                                       class="form-control p-1 m-1 @error('min_price') is-invalid @enderror"
+                                       aria-label="Min price" placeholder="Min price"
+                                       value="{{ isset($min_price)? $min_price : '' }}"
+                                >
+                                @error('stock')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="max_price" name="max_price" style="width: 90px;"
+                                       class="form-control p-1 m-1 @error('max_price') is-invalid @enderror"
+                                       aria-label="Max price" placeholder="Max price"
+                                       value="{{ isset($max_price)? $max_price : '' }}"
+                                >
+                                @error('stock')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="search" id="name_search" name="name"
+                                       class="form-control p-1 mr-3 ml-3 @error('name') is-invalid @enderror"
+                                       aria-label="Search by name" placeholder="Search by name" autocomplete autofocus
+                                       value="{{ isset($name)? $name : '' }}"
+                                >
+                                @error('name')
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                @enderror
+                            </div>
+
+                            <button class="btn btn-outline-primary" type="submit">Search</button>
+                        </form>
+                    </div>
+
                 </div>
                 <tr class="text-primary text-uppercase">
                     <td>ID</td>
                     <td>Sku</td>
                     <td>Name</td>
-                    <td>Description</td>
+                    <td style="width:300px">Description</td>
                     <td>Image</td>
                     <td>Price</td>
                     <td>Stock</td>
                     <td>Enabled</td>
                     <td>Notes</td>
-                    <td>Actions</td>
+                    <td colspan="2">Actions</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,13 +68,15 @@
                         <td>{{ $product->sku }}</td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->description }}</td>
-                        <td><img src="{{ $product->image }}" style="width:100px" alt="{{ $product->name }}"></td>
+                        <td><img src="{{ $product->image }}" style="width:80px" alt="{{ $product->name }}"></td>
                         <td>${{ $product->price }}</td>
                         <td>{{ $product->stock }}</td>
                         <td>{{ $product->enabled }}</td>
                         <td>{{ $product->notes }}</td>
-                        <td class="row">
+                        <td>
                             <a href="{{ route('admin.products.edit',$product->id)}}" class="btn btn-primary">Edit</a>
+                        </td>
+                        <td>
                             <form action="{{ route('admin.products.destroy', $product->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
@@ -44,9 +85,9 @@
                         </td>
                     </tr>
                 @endforeach
-                {{ $products->render() }}
                 </tbody>
             </table>
+            {{ $products->render() }}
         <div>
     </div>
     <div class="col-sm-12">
