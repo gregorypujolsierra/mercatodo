@@ -6,10 +6,10 @@ use App\Product;
 use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
-    $name = $faker->unique()->words(3, true);
+    $name = $faker->unique()->words(2, true);
     $name_arr = explode(' ', trim($name));
     return [
-        'sku' => 'MT-' . strtoupper($name_arr[0]) . '-' . $faker->randomNumber(3, true),
+        'sku' => substr($name_arr[0], 0, 4) . $faker->randomNumber(4),
         'name' => ucfirst($name),
         'description' => $faker->text(255),
         'image' => $faker->imageUrl(480, 360,'technics'),

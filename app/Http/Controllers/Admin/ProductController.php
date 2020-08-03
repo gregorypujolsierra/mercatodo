@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Product\SearchProductRequest;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
 use App\Product;
@@ -19,14 +20,41 @@ class ProductController extends Controller
     /**
      * Display a list of products.
      *
+     * @param SearchProductRequest $request
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(SearchProductRequest $request)
     {
-        $products = Product::orderBy('id', 'DESC')->paginate(5);
-        $section_title = 'Products';
+        /**
+         * @todo Take this logic away from this controller
+        */
+        $name = $request->get('name');
+        $min_price = $request->get('min_price');
+        $max_price = $request->get('max_price');
 
-        return view('admin.products.index', compact(['products', 'section_title']));
+        if ($min_price or $max_price) {
+            $price_range = array($min_price, $max_price);
+            $min_price = min($price_range);
+            $max_price = max($price_range);
+
+            if ($min_price == $max_price) {
+                if ($min_price < 10) {
+                    $max_price += 10;
+                } elseif ($min_price > 990) {
+                    $min_price -= 10;
+                } else {
+                    $max_price += 10;
+                }
+            }
+        }
+
+        $products = Product::namelike($name)
+            ->pricegreaterthan($min_price)
+            ->pricelessthan($max_price)
+            ->orderBy('id', 'DESC')
+            ->paginate(config('app.default_pagination', 5));
+
+        return view('admin.products.index', compact(['products', 'name', 'min_price', 'max_price']));
     }
 
     /**

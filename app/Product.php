@@ -20,4 +20,25 @@ class Product extends Model
         'enabled',
         'notes',
     ];
+
+    public function scopeNameLike($query, $name)
+    {
+        if ($name) {
+            return $query->where('name', 'like', "%$name%");
+        }
+    }
+
+    public function scopePriceGreaterThan($query, $price)
+    {
+        if ($price) {
+            return $query->where('price', '>', $price - 1);
+        }
+    }
+
+    public function scopePriceLessThan($query, $price)
+    {
+        if ($price) {
+            return $query->where('price', '<', $price + 1);
+        }
+    }
 }

@@ -230,4 +230,6 @@ return [
 
     ],
 
+    'max_product_price' => env('MAX_PRODUCT_PRICE', 1000),
+    'default_pagination' => env('DEFAULT_PAGINATION', 10),
 ];
