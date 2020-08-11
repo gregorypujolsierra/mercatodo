@@ -3,19 +3,16 @@
 ## About MercaTodo
 
 Is an online store project, built in Laravel.
-- Ipsum
-- dolor
 
-## Installation
+## Requirements
 
-Homestead
+Homestead (for install instructions see https://laravel.com/docs/master/homestead)
 
 ## Features
+- Authentication
+- User roles
+- User CRUD
 
-MercaTodo important features
-
-## Next release
-
-Coming soon with new features:
-- feature
-- feature
+## Next releases
+- Product CRUD
+- List and add products to cart

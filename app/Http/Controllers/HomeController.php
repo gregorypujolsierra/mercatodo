@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -11,18 +13,19 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware(['auth', 'verified']);
-    }
 
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Request $request
+     * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        if (Gate::denies('user-enabled')) {
+            $request->session()->flash('error', 'Your user is disabled. Please contact us: admin@mercatodo.store');
+        }
+
         return view('home');
     }
 }

@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'MercaTodo Store'),
+    'admin_name' => env('ADMIN_APP_NAME', 'MercaTodo Admin'),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +68,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -229,4 +230,6 @@ return [
 
     ],
 
+    'max_product_price' => env('MAX_PRODUCT_PRICE', 1000),
+    'default_pagination' => env('DEFAULT_PAGINATION', 10),
 ];
