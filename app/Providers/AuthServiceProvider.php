@@ -52,7 +52,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define(
             'list-products',
             function ($user) {
-                return $user->hasAnyRoles(['admin', 'staff']);
+                return $user->hasAnyRoles(['admin', 'staff', 'user']);
             }
         );
 

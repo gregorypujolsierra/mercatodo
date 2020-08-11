@@ -11,24 +11,24 @@
                         <a style="margin: 19px;" href="{{ route('admin.products.create')}}" class="btn btn-primary">New product</a>
                     </div>
                     <div class="form-inline float-right">
-                        <form class="">
+                        <form id="admin_product_search" action="{{ route('admin.products.index')}}" class="form-inline">
                             <div class="form-group">
                                 <input type="number" id="min_price" name="min_price" style="width: 90px;"
                                        class="form-control p-1 m-1 @error('min_price') is-invalid @enderror"
-                                       aria-label="Min price" placeholder="Min price"
+                                       aria-label="Min price" placeholder="Min price" min="0"
                                        value="{{ isset($min_price)? $min_price : '' }}"
                                 >
-                                @error('stock')
+                                @error('min_price')
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <input type="number" id="max_price" name="max_price" style="width: 90px;"
                                        class="form-control p-1 m-1 @error('max_price') is-invalid @enderror"
-                                       aria-label="Max price" placeholder="Max price"
+                                       aria-label="Max price" placeholder="Max price" min="0"
                                        value="{{ isset($max_price)? $max_price : '' }}"
                                 >
-                                @error('stock')
+                                @error('max_price')
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
@@ -42,7 +42,6 @@
                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
-
                             <button class="btn btn-outline-primary" type="submit">Search</button>
                         </form>
                     </div>
@@ -88,7 +87,7 @@
                 </tbody>
             </table>
             {{ $products->render() }}
-        <div>
+        </div>
     </div>
     <div class="col-sm-12">
         @if(session()->get('success'))
