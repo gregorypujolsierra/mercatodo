@@ -10,4 +10,28 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function priceSearchRange($min_price, $max_price): array
+    {
+        if ($min_price or $max_price) {
+            $price_range = array($min_price, $max_price);
+            $min_price = min($price_range);
+            $max_price = max($price_range);
+
+            if ($min_price == $max_price) {
+                if ($min_price < 10) {
+                    $max_price += 10;
+                } elseif ($min_price > 990) {
+                    $min_price -= 10;
+                } else {
+                    $max_price += 10;
+                }
+            }
+            $price_range = array($min_price, $max_price);
+        } else {
+            $price_range = array(null, null);
+        }
+
+        return $price_range;
+    }
 }

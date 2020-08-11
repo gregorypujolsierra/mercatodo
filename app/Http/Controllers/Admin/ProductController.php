@@ -25,28 +25,10 @@ class ProductController extends Controller
      */
     public function index(SearchProductRequest $request)
     {
-        /**
-         * @todo Take this logic away from this controller
-        */
         $name = $request->get('name');
-        $min_price = $request->get('min_price');
-        $max_price = $request->get('max_price');
-
-        if ($min_price or $max_price) {
-            $price_range = array($min_price, $max_price);
-            $min_price = min($price_range);
-            $max_price = max($price_range);
-
-            if ($min_price == $max_price) {
-                if ($min_price < 10) {
-                    $max_price += 10;
-                } elseif ($min_price > 990) {
-                    $min_price -= 10;
-                } else {
-                    $max_price += 10;
-                }
-            }
-        }
+        $price_range = $this->pricesearchrange($request->get('min_price'), $request->get('max_price'));
+        $min_price = $price_range[0];
+        $max_price = $price_range[1];
 
         $products = Product::namelike($name)
             ->pricegreaterthan($min_price)
