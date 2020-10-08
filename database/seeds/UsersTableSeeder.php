@@ -47,5 +47,6 @@ class UsersTableSeeder extends Seeder
                 'role_id' => $userRole->id,
             ]
         );
+        factory(User::class, 8)->create();
     }
 }

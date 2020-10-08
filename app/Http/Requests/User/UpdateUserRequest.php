@@ -4,6 +4,10 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @todo Is it necessary to have two different request for both store and update users?
+ **/
+
 class UpdateUserRequest extends FormRequest
 {
     /**
@@ -11,7 +15,7 @@ class UpdateUserRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }

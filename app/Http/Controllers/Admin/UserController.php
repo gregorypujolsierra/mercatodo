@@ -23,7 +23,7 @@ class UserController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(): View
     {
         $users = User::all();
 
@@ -35,7 +35,7 @@ class UserController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function create()
+    public function create(): View
     {
         $roles = Role::all();
 
@@ -48,7 +48,7 @@ class UserController extends Controller
      * @param StoreUserRequest $request
      * @return Application|RedirectResponse|Redirector
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): Redirector
     {
         $name = $request->get('name');
         $email = $request->get('email');
@@ -91,7 +91,7 @@ class UserController extends Controller
      *
      * @todo Redirect to 404 if $id doesn't exists in db
      */
-    public function edit(int $id)
+    public function edit(int $id): View
     {
         if (Gate::denies('manage-users')) {
             return redirect(route('admin.users.index'))
@@ -113,7 +113,7 @@ class UserController extends Controller
      *
      * @todo Add more password restrictions to make it secure
      */
-    public function update(UpdateUserRequest $request, int $id)
+    public function update(UpdateUserRequest $request, int $id): Redirector
     {
         if (Gate::denies('manage-users')) {
             return redirect(route('admin.users.index'));
@@ -149,7 +149,7 @@ class UserController extends Controller
      * @param int $id
      * @return Application|RedirectResponse|Redirector
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Redirector
     {
         if (Gate::denies('manage-users')) {
             return redirect(route('admin.users.index'))

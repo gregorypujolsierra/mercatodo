@@ -4,6 +4,10 @@ namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @todo Is it necessary to have two different request for both store and update products?
+ **/
+
 class StoreProductRequest extends FormRequest
 {
     /**
@@ -11,7 +15,7 @@ class StoreProductRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
