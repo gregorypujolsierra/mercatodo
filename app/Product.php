@@ -21,6 +21,13 @@ class Product extends Model
         'notes',
     ];
 
+    /**
+     * @param $query
+     * @param $name
+     * @return mixed
+     *
+     * @todo What are these functions supposed to return?
+     */
     public function scopeNameLike($query, $name)
     {
         if ($name) {
@@ -28,6 +35,11 @@ class Product extends Model
         }
     }
 
+    /**
+     * @param $query
+     * @param $price
+     * @return mixed
+     */
     public function scopePriceGreaterThan($query, $price)
     {
         if ($price) {
@@ -35,6 +47,11 @@ class Product extends Model
         }
     }
 
+    /**
+     * @param $query
+     * @param $price
+     * @return mixed
+     */
     public function scopePriceLessThan($query, $price)
     {
         if ($price) {

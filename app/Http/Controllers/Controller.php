@@ -9,9 +9,11 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests;
+    use DispatchesJobs;
+    use ValidatesRequests;
 
-    public function priceSearchRange($min_price, $max_price): array
+    public function priceSearchRange(?int $min_price, ?int $max_price): array
     {
         if ($min_price or $max_price) {
             $price_range = array($min_price, $max_price);

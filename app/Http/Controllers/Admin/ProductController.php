@@ -23,7 +23,7 @@ class ProductController extends Controller
      * @param SearchProductRequest $request
      * @return Application|Factory|View
      */
-    public function index(SearchProductRequest $request)
+    public function index(SearchProductRequest $request): View
     {
         $name = $request->get('name');
         $price_range = $this->pricesearchrange($request->get('min_price'), $request->get('max_price'));
@@ -44,7 +44,7 @@ class ProductController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function create()
+    public function create(): View
     {
         return view('admin.products.create');
     }
@@ -55,7 +55,7 @@ class ProductController extends Controller
      * @param StoreProductRequest $request
      * @return Application|RedirectResponse|Redirector
      */
-    public function store(StoreProductRequest $request)
+    public function store(StoreProductRequest $request): Redirector
     {
         $price = $request->get('price') ?? 0;
         $stock = $request->get('stock') ?? 0;
@@ -99,7 +99,7 @@ class ProductController extends Controller
      * @param int $id
      * @return Application|RedirectResponse|Factory|View
      */
-    public function edit(int $id)
+    public function edit(int $id): View
     {
         if (Gate::denies('manage-products')) {
             return redirect(route('admin.products.index'))
@@ -118,7 +118,7 @@ class ProductController extends Controller
      * @param int $id
      * @return Application|RedirectResponse|Redirector
      */
-    public function update(UpdateProductRequest $request, int $id)
+    public function update(UpdateProductRequest $request, int $id): Redirector
     {
         if (Gate::denies('manage-products')) {
             return redirect(route('admin.products.index'));
@@ -159,7 +159,7 @@ class ProductController extends Controller
      * @param int $id
      * @return Application|RedirectResponse|Redirector
      */
-    public function destroy(int $id)
+    public function destroy(int $id): Redirector
     {
         if (Gate::denies('manage-products')) {
             return redirect(route('admin.products.index'))

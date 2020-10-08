@@ -4,6 +4,10 @@ namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @todo Is it necessary to have two different request for both store and update products?
+ **/
+
 class UpdateProductRequest extends FormRequest
 {
     /**
@@ -11,7 +15,7 @@ class UpdateProductRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -24,8 +28,8 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'sku' => 'required|string|max:255|unique:products,sku,'.$this->product,
-            'name' => 'required|string|max:255|unique:products,name,'.$this->product,
+            'sku' => 'required|string|max:255|unique:products,sku,' . $this->product,
+            'name' => 'required|string|max:255|unique:products,name,' . $this->product,
             'price' => 'required|min:0|int',
             'stock' => 'required|min:0|int',
         ];
